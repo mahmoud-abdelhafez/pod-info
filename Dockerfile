@@ -12,11 +12,11 @@ RUN go mod download
 
 RUN CGO_ENABLED=0 go build -ldflags "-s -w \
     -X github.com/stefanprodan/podinfo/pkg/version.REVISION=${REVISION}" \
-    -a -o bin/podinfo cmd/podinfo/
+    -a -o bin/podinfo cmd/podinfo/*
 
 RUN CGO_ENABLED=0 go build -ldflags "-s -w \
     -X github.com/stefanprodan/podinfo/pkg/version.REVISION=${REVISION}" \
-    -a -o bin/podcli cmd/podcli/
+    -a -o bin/podcli cmd/podcli/*
 
 FROM alpine:3.14
 
@@ -35,7 +35,7 @@ WORKDIR /home/app
 
 COPY --from=builder /podinfo/bin/podinfo .
 COPY --from=builder /podinfo/bin/podcli /usr/local/bin/podcli
-#COPY ./ui ./ui
+COPY ./ui ./ui
 RUN chown -R app:app ./
 
 USER app
