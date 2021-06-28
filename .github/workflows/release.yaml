@@ -1,9 +1,9 @@
 name: release
-
 on:
+  workflow_dispatch:
+  pull_request:
   push:
-    tags: '*'
-
+    branches: [ '*' ]
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -38,7 +38,7 @@ jobs:
           push: true
           builder: ${{ steps.buildx.outputs.name }}
           context: .
-          file: ./src/Dockerfile
+          file: ./Dockerfile
           platforms: linux/amd64,linux/arm/v7,linux/arm64
           tags: |
             docker.io/mahmoudmohamed/podinfo:${{ steps.prep.outputs.VERSION }}
