@@ -44,7 +44,7 @@ jobs:
           push: true
           builder: ${{ steps.buildx.outputs.name }}
           context: .
-          file: ./Dockerfile
+          file: ./src/Dockerfile
           platforms: linux/amd64,linux/arm/v7,linux/arm64
           tags: |
             docker.io/mahmoudmohamed/podinfo:${{ steps.prep.outputs.VERSION }}
