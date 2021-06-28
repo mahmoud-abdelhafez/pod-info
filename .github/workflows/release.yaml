@@ -1,7 +1,9 @@
 name: release
 on:
+  workflow_dispatch:
+  pull_request:
   push:
-    tags: '*'
+    branches: [ '*' ]
 jobs:
   release:
     runs-on: ubuntu-latest
