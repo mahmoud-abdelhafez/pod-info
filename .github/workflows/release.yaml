@@ -41,8 +41,8 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64,linux/arm/v7,linux/arm64
           tags: |
-            docker.io/mahmoudmohamed/podinfo:${{ steps.prep.outputs.VERSION }}
-            docker.io/mahmoudmohamed/podinfo:latest
+            docker.io/mahmoud3050/podinfo:${{ steps.prep.outputs.VERSION }}
+            docker.io/mahmoud3050/podinfo:latest
           labels: |
             org.opencontainers.image.title=${{ github.event.repository.name }}
             org.opencontainers.image.description=${{ github.event.repository.description }}
@@ -59,4 +59,4 @@ jobs:
           context: .
           platforms: linux/amd64
           file: ./Dockerfile.base
-          tags: docker.io/mahmoudmohamed/podinfo-base:latest
+          tags: docker.io/mahmoud3050/podinfo-base:latest
