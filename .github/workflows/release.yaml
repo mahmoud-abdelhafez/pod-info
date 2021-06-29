@@ -1,9 +1,9 @@
 name: release
+
 on:
-  workflow_dispatch:
-  pull_request:
   push:
-    branches: [ '*' ]
+    tags: '*'
+
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -26,6 +26,7 @@ jobs:
       - name: Prepare
         id: prep
         run: |
+          VERSION=sha-${GITHUB_SHA::8}
           if [[ $GITHUB_REF == refs/tags/* ]]; then
             VERSION=${GITHUB_REF/refs\/tags\//}
           fi
