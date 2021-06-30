@@ -1,3 +1,5 @@
+
+Task List
 - Install k8s on kind cluster
 - install flux to reconcile the app repo to the cluster
 - install flagger to manage the auto blue/green
