@@ -45,7 +45,7 @@ spec:
         - --grpc-service-name=podinfo
         - --level=info
         - --random-delay=false
-        - --random-error=false
+        - --random-error=true
         env:
         - name: PODINFO_UI_COLOR
           value: "#34577c"
