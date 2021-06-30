@@ -4,6 +4,7 @@ metadata:
   labels:
     run: test-pd
   name: test-pd
+  namespace: test
 spec:
   containers:
     - image: nginx
