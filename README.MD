@@ -17,48 +17,18 @@ Task List
 
 Infrastructure Provisioning:
 
-We have to have a machine that have docker daemon already installed and runing
-Our app is designed to run on a kubernetes cluster so we are going to install  a kind cluster (k8s on Docker)
+We assume that we have a machine that have docker daemon already installed and runing
+Our app is designed to run on a kubernetes cluster so we are going to install a kind cluster (k8s on Docker)
 
-Install kubectl
-- on Linux
-```
-curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-```
-Install kind:
-- On Linux:
-```
-curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.11.1/kind-linux-amd64
-chmod +x ./kind
-mv ./kind /some-dir-in-your-PATH/kind
-```
+Install Kind, kubectl, flux
 
-- On Mac
-```
-brew install kind
-```
-
-Create the k8s cluster:
-```
-cat > kind-config.yaml  <<EOF
-# three node (two workers) cluster config
-kind: Cluster
-apiVersion: kind.x-k8s.io/v1alpha4
-nodes:
-- role: control-plane
-- role: worker
-- role: worker
-EOF
-
-kind create cluster --name staging --config kind-config.yaml
-```
-
-Installing Flux  CLI
+Clone this repo to your local and cd to its main direcotry.
 
 ```
-curl -s https://fluxcd.io/install.sh | sudo bash
-flux check --pre
+bash env-installation.sh
 ```
+
+
 
 once all of the above tools are already installed,
 We should  be  ready to bootstrap flux on our k8s cluster , After the bootstrap flux should reconcile the k8s resources on the k8s cluster
