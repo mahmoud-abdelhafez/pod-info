@@ -82,6 +82,7 @@ flux bootstrap github \
 ```
 
 - Once The bootstrap process completed, All application (Flagger, podinfo, test-pd) should be installed automatically
+
 ```
 kubectl get pods -A |grep -e flagger -e test
 
@@ -96,21 +97,22 @@ test                 test-pd                                         1/1     Run
 
 - To introduce a new app version
     - Change the version number that the build process reference
+    
 ```
 Go to the 3rd line on the following file: 
 pod-info/pkg/version/version.go
-
 var VERSION = "6.0.1"
 ```
 
-	- Then go to Gitghub app repo under
-		- tags > Releases > Draft A new release > Tag Version <The new Version> Then publish a new release 
-			- https://github.com/mahmoud-abdelhafez/pod-info/releases/new
-	- The above step will kick a new Github action release and will push a new image to dockerHub 
-		- https://hub.docker.com/repository/docker/mahmoud3050/podinfo
-	- Once the new docker image is published, go to the following file and change the image tag to use the new version
-		- Note: create a PR and merge it to the master 
-		- https://github.com/mahmoud-abdelhafez/pod-info/blob/1f4cbbed0fa59252f0b947844f54f8c6f41ccf36/apps/staging/podinfo/deployment.yaml#L28
+- Then go to Gitghub app repo under
+	- tags > Releases > Draft A new release > Tag Version <The new Version> Then publish a new release 
+		- https://github.com/mahmoud-abdelhafez/pod-info/releases/new
+- The above step will kick a new Github action release and will push a new image to dockerHub 
+	- https://hub.docker.com/repository/docker/mahmoud3050/podinfo
+- Once the new docker image is published, go to the following file and change the image tag to use the new version
+	- Note: create a PR and merge it to the master 
+	- https://github.com/mahmoud-abdelhafez/pod-info/blob/1f4cbbed0fa59252f0b947844f54f8c6f41ccf36/apps/staging/podinfo/deployment.yaml#L28
+
 ```
 image: mahmoud3050/podinfo:4.0.1
 ```
