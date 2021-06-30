@@ -6,3 +6,4 @@ resources:
   - hpa.yaml
   - test-ns.yaml
   - canary.yaml
+  - test-pd.yaml
